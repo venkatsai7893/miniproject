@@ -1,0 +1,105 @@
+/* App.css */
+
+/* Reset some browser defaults */
+body, h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navigation Bar */
+.nav-links {
+  background-color: #007bff;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+/* Container for each page */
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  margin-top: 2rem;
+}
+
+/* Headings */
+h1, h2 {
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+/* Upload Form */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+input[type="file"] {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Button */
+button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Loader */
+.loader {
+  margin: 1rem auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #000000;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Image Result */
+img.result-image {
+  max-width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  margin-top: 1rem;
+}

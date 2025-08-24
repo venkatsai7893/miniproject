@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgery Detection Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 1rem;
+      border: 3px solid #ddd;
+    }
+
+    .score {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #007bff;
+    }
+
+    .back-button {
+      margin-top: 1.5rem;
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Forgery Detection Result</h1>
+
+    <!-- Show the image result -->
+    <img id="resultImage" src="" alt="Forgery Detection Result" />
+
+    <!-- Show the F-measure score -->
+    <div class="score" id="fScore">
+      F-Measure Score: 0.0000
+    </div>
+
+    <!-- Go back button -->
+    <button class="back-button" onclick="window.history.back()">← Back</button>
+  </div>
+
+  <script>
+    // Set this from your Flask backend if you're rendering a template
+    const imageData = sessionStorage.getItem('forgeryResult'); // or use template variable
+    const fScore = sessionStorage.getItem('fScore');
+
+    if (imageData) {
+      document.getElementById('resultImage').src = 'data:image/png;base64,' + imageData;
+    }
+
+    if (fScore) {
+      document.getElementById('fScore').innerText = 'F-Measure Score: ' + parseFloat(fScore).toFixed(4);
+    }
+  </script>
+
+</body>
+</html>

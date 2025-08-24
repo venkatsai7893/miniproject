@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>React App</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🕵️‍♂️ Image Forgery Detection</h1>
+      <p>Upload an image to detect copy-move forgery</p>
+    </header>
+
+    <form id="uploadForm">
+      <input type="file" id="imageInput" name="image" accept="image/*" required /><br>
+      <button type="submit">🧠 Detect Forgery</button>
+    </form>
+
+    <div class="loader" id="loader"></div>
+
+    <div id="resultContainer">
+      <h2>🔍 Detection Result</h2>
+      <img id="resultImage" src="" alt="Detection result will appear here" />
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const imageInput = document.getElementById('imageInput');
+    const resultImage = document.getElementById('resultImage');
+    const loader = document.getElementById('loader');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = imageInput.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      loader.style.display = 'block';
+      resultImage.src = '';
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/detect', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) throw new Error('Detection failed');
+
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        resultImage.src = imageUrl;
+      } catch (err) {
+        alert('❌ Error: ' + err.message);
+      } finally {
+        loader.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
